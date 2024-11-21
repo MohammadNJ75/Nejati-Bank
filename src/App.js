@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import CreateCustomer from "./features/customers/CreateCustomer";
+import Customer from "./features/customers/Customer";
+import AccountOperations from "./features/accounts/AccountOperations";
+import BalanceDisplay from "./features/accounts/BalanceDisplay";
+import { useSelector } from "react-redux";
+import { MotionAnimate } from "react-motion-animate";
 
 function App() {
+  const fullName = useSelector((state) => state.customer.fullName);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MotionAnimate>
+        <h1 style={{ fontFamily: "sans-serif",color:"white" }}>🏦Nejati Bank⚛️</h1>
+        <h2 style={{color:"white"}}>small project made with RTK( redux toolkit)</h2>
+        {fullName === "" ? (
+          <CreateCustomer />
+        ) : (
+          <>
+            <Customer />
+            <AccountOperations />
+            <BalanceDisplay />
+          </>
+        )}
+      </MotionAnimate>
     </div>
   );
 }
